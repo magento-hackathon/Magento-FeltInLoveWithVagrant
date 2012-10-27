@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Magento-FeltInLoveWithVagrant" basedir=".">
+ 
+	<property file="build.properties"/>
+	<property file="build.default.properties"/>
+	<property name="srcdir" value="${basedir}/src"/>
+	<property name="vagrantdir" value="${basedir}/.vagrant"/>
+
+    <target name="rebuild_cache">
+    <concat destfile=".IGNOREME">
+		<fileset dir="src/">
+	    <include name="**/*"/>
+	    	<modified>
+		    	<param name="cache.cachefile" value="${transfer.dev.cache}.cache.properties"/>
+	    	</modified>
+	    	
+	    	<modified>
+		    	<param name="cache.cachefile" value="${transfer.live.cache}.cache.properties"/>
+	    	</modified>
+    	</fileset>
+    </concat>
+	</target>
+	
+   <target name="vagrant_init">
+          <exec dir="${vagrantdir}" executable="cmd">
+              <arg line="/c vagrant init ${vagrant.basebox}"/>
+          </exec>
+          <exec dir="${vagrantdir}" executable="cmd">
+              <arg line="/c vagrant up"/>
+          </exec>
+    </target>
+
+    <target name="vagrant_up">
+          <exec dir="${vagrantdir}" executable="cmd">
+              <arg line="/c vagrant up"/>
+          </exec>
+    </target>
+ 
+    <target name="vagrant_reload">
+          <exec dir="${vagrantdir}" executable="cmd">
+              <arg line="/c vagrant reload"/>
+          </exec>
+    </target>
+    
+    <target name="vagrant_suspend">
+          <exec dir="${vagrantdir}" executable="cmd">
+              <arg line="/c vagrant halt"/>
+          </exec>
+    </target>
+    
+    <target name="vagrant_resume">
+          <exec dir="${vagrantdir}" executable="cmd">
+              <arg line="/c vagrant halt"/>
+          </exec>
+    </target>
+
+    <target name="vagrant_halt">
+          <exec dir="${vagrantdir}" executable="cmd">
+              <arg line="/c vagrant halt"/>
+          </exec>
+    </target>
+	
+	<target name="deploy">
+		<scp
+    		remoteTodir="${transfer.user}@${transfer.server}:${transfer.path}"
+    		password="${transfer.password}"
+            trust="true"
+			port="${transfer.port}"
+            verbose="true"
+            >
+	        <fileset dir="src">
+	            <include name="**/*"/>
+	            <modified>
+	            	 <param name="cache.cachefile" value="${transfer.cache}.cache.properties"/>
+	            </modified>
+	            <exclude name="**/.svn"/>
+	            <exclude name="downloader/**"/>
+	        	<exclude name="pear"/>
+	            <exclude name="*cache.properties"/>
+	            <exclude name="build.default.properties"/>
+	            <exclude name="build.properties"/>
+	            <exclude name="build.xml"/>
+	        	<exclude name="var/**" />
+	        	<exclude name="Thumbs.db" />
+	        </fileset>
+	    </scp>
+	</target>
+
+</project>
