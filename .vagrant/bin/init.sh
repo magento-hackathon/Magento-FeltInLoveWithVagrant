@@ -195,10 +195,12 @@ echo [+] init ${magentoVersion}
 		       --admin_email "info@flagbit.de" \
 		       --admin_username "admin" \
 		       --admin_password "vagrant1"
-	
+		       echo "[+] Have fun with vagrant and Magento at ${url}"
+	else
+		echo "[+] nothing happened"
 	fi
 	
-	echo "[+] Have fun with vagrant and Magento at ${url}"
+	
 	
  
 
