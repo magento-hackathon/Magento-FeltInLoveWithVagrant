@@ -22,41 +22,41 @@
 	</target>
 	
    <target name="vagrant_init">
-          <exec dir="${vagrantdir}" executable="{$vagrant.${vagrant.cmd}}">
-              <arg line="vagrant init ${vagrant.basebox}"/>
+          <exec dir="${vagrantdir}" executable="${vagrant.cmd}">
+              <arg line="${vagrant.path} vagrant init ${vagrant.basebox}"/>
           </exec>
           <exec dir="${vagrantdir}" executable="${vagrant.cmd}">
-              <arg line="vagrant up"/>
+              <arg line="${vagrant.path} vagrant up"/>
           </exec>
     </target>
 
     <target name="vagrant_up">
           <exec dir="${vagrantdir}" executable="${vagrant.cmd}">
-              <arg line="vagrant up"/>
+              <arg line="${vagrant.path} vagrant up"/>
           </exec>
     </target>
  
     <target name="vagrant_reload">
           <exec dir="${vagrantdir}" executable="${vagrant.cmd}">
-              <arg line="vagrant reload"/>
+              <arg line="${vagrant.path} vagrant reload"/>
           </exec>
     </target>
     
     <target name="vagrant_suspend">
           <exec dir="${vagrantdir}" executable="${vagrant.cmd}">
-              <arg line="vagrant halt"/>
+              <arg line="${vagrant.path} vagrant halt"/>
           </exec>
     </target>
     
     <target name="vagrant_resume">
           <exec dir="${vagrantdir}" executable="${vagrant.cmd}">
-              <arg line="vagrant halt"/>
+              <arg line="${vagrant.path} vagrant halt"/>
           </exec>
     </target>
 
     <target name="vagrant_halt">
           <exec dir="${vagrantdir}" executable="${vagrant.cmd}">
-              <arg line="vagrant halt"/>
+              <arg line="${vagrant.path} vagrant halt"/>
           </exec>
     </target>
 	
