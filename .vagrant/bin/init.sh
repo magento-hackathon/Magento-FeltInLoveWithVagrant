@@ -197,7 +197,7 @@ echo [+] init ${magentoVersion}
 		       --admin_password "vagrant1"
 		       echo "[+] Have fun with vagrant and Magento at ${url}"
 	else
-		echo "[+] nothing happened"
+		echo "[+] nothing to do"
 	fi
 	
 	
