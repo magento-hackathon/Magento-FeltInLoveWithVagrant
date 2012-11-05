@@ -7,5 +7,4 @@
 /.settings
 .idea
 .project
-.vagrant/files
 build.default.properties
